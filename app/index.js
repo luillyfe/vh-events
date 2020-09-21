@@ -1,12 +1,10 @@
+import {getComponent} from "./components/Events.js";
+
 app()
 
 function app() {
-    const event1 = getComponent('events')
-}
-
-function getComponent(parentId) {
-    const event = document.createElement("section");
-    event.setAttribute('class', 'card event')
-    const main = document.getElementById(parentId);
-    main.appendChild(event);
+    const src = 'https://via.placeholder.com/300x150'
+    const title = 'Premiun Open House Experience'
+    const deadline = 'September 24, 2020'
+    const event1 = getComponent('events', {src, title, deadline})
 }
