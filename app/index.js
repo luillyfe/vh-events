@@ -1,4 +1,4 @@
-import {getComponent} from "./components/Events.js";
+import {getComponent} from "./components/Event.js";
 
 app()
 
