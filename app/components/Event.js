@@ -1,4 +1,4 @@
-export function getComponent(parentId, attributes) {
+export function Event(parentId, attributes) {
     const main = document.getElementById(parentId);
     main.innerHTML = createEventComponent(attributes);
 }
@@ -18,12 +18,12 @@ function createEventComponent({src, title, deadline}) {
         </section>`
     const doc = domparser.parseFromString(html, 'text/html')
     const styles = document.createElement('style')
-    styles.innerHTML = getStyles()
+    styles.innerHTML = createStyles()
     doc.body.appendChild(styles);
     return doc.body.innerHTML
 }
 
-function getStyles() {
+function createStyles() {
     return `
         .card {
             flex: 0 1 20%;
