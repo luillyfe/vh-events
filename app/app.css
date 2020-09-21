@@ -1,0 +1,13 @@
+
+.events {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+.card {
+    flex: 0 1 20%;
+    height: 600px;
+    margin: 1em 4% 0;
+    background-color: black;
+}
