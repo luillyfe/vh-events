@@ -1,6 +1,8 @@
+import {escaping} from "../utils/index.js";
+
 export function Event(parentId, attributes) {
     const main = document.getElementById(parentId);
-    main.insertAdjacentHTML('beforebegin', createEventComponent(attributes));
+    main.insertAdjacentHTML('beforebegin', createEventComponent(escaping(attributes)));
 }
 
 function createEventComponent({src, title, deadline}) {
