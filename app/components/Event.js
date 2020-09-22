@@ -1,6 +1,6 @@
 export function Event(parentId, attributes) {
     const main = document.getElementById(parentId);
-    main.innerHTML = createEventComponent(attributes);
+    main.insertAdjacentHTML('beforebegin', createEventComponent(attributes));
 }
 
 function createEventComponent({src, title, deadline}) {
