@@ -11,10 +11,19 @@ export class Navbar extends HTMLElement {
                   </span>
                 </button>
                 <div class="navbar collapse">
-                    <ul><li><button>New event</button></li></ul>
+                    <ul><li><button id="newEvent">New event</button></li></ul>
                 </div>
             </nav>
         `
+
+        const button = this.shadowRoot.querySelector('#newEvent');
+        const events = document.querySelector('vh-events')
+
+        button.addEventListener('click', ev => {
+            this.dispatchEvent(new CustomEvent('new-event', {
+                bubbles: true
+            }))
+        })
     }
 
 }

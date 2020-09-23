@@ -1,22 +1,19 @@
-export class Event extends HTMLElement {
+export class NewEvent extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({mode: 'open'})
 
-        const src = this.attributes.src ? this.attributes.src.value : "https://via.placeholder.com/300x150"
-        const title = this.attributes.title.value
-        const deadline = this.attributes.deadline.value
-
         this.shadowRoot.innerHTML = `
         ${getStyles()}
         <section class="card">
-            <img src=${src} alt="image">
-                <div class="body">
-                    <h5 class="cardHead">${title}</h5>
-                    <p>${deadline}</p>
+            <img src="https://via.placeholder.com/300x150" alt="image">
+                <form class="body">
+                    <h5 class="cardHead"><Input type="text" /></h5>
+                    <p><Input type="text" /></p>
                     <p><span>😱</span>Online</p>
-                    <p><strong>Deadline:</strong> ${deadline}</p>
-                </div>
+                    <p class="last-paragraph"><strong>Deadline:</strong> ""</p>
+                    <button class="createEvent">Create</button>
+                </form>
         </section>
         `
     }
@@ -48,6 +45,13 @@ function getStyles() {
         .cardHead {
             font-size: 1.5em;
             text-align: center;
+        }
+        .last-paragraph {
+        flex: 1;
+        }
+        .createEvent {
+            font-size: 0.8em;
+            padding: 1em;
         }
     </style>
     `
