@@ -3,7 +3,7 @@ export class Event extends HTMLElement {
         super();
         this.attachShadow({mode: 'open'})
 
-        const src = this.attributes.src ? this.attributes.src.value : "https://via.placeholder.com/300x150"
+        const src = this.attributes.src ? this.attributes.src.value : "/public/images/300x150.png"
         const title = this.attributes.title.value
         const deadline = this.attributes.deadline.value
 

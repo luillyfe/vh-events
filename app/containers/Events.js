@@ -1,15 +1,24 @@
+import {HTMLContext} from "../store/HTMLContext.js";
 import {request} from "../request/index.js";
+import {GET_EVENTS} from "../store/actions.js";
 
-export class Events extends HTMLElement {
+export class Events extends HTMLContext {
     constructor() {
         super();
         this.attachShadow({mode: 'open'})
 
         request.get('events').then(events => {
+            this.store.dispatch({
+                type: GET_EVENTS,
+                payload: {events}
+            })
+        })
+
+        this.store.subscribe(({events}) => {
             this.shadowRoot.innerHTML = `
-                ${getStyles()}
-                ${getHtml(events).innerHTML}
-            `
+                    ${getStyles()}
+                    ${getHtml(events.all).innerHTML}
+                `
         })
 
         this.shadowRoot.innerHTML = `
