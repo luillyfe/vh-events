@@ -1,12 +1,9 @@
-import {Event} from "./components/Event.js";
-import {request} from "./request/index.js";
 
 app()
 
-async function app() {
-    const events = await request.get('events')
+function app() {
+    const app = document.getElementById('app')
 
-    for (let event of events) {
-        Event('events', event)
-    }
+    app.insertAdjacentHTML('beforeend',
+        `<vh-events></vh-events>`)
 }

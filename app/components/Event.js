@@ -1,13 +1,14 @@
-import {escaping} from "../utils/index.js";
+export class Event extends HTMLElement {
+    constructor() {
+        super();
+        this.attachShadow({mode: 'open'})
 
-export function Event(parentId, attributes) {
-    const main = document.getElementById(parentId);
-    main.insertAdjacentHTML('beforebegin', createEventComponent(escaping(attributes)));
-}
+        const src = this.attributes.src.value
+        const title = this.attributes.title.value
+        const deadline = this.attributes.deadline.value
 
-function createEventComponent({src, title, deadline}) {
-    const domparser = new DOMParser()
-    const html = `
+        this.shadowRoot.innerHTML = `
+        ${getStyles()}
         <section class="card">
             <img src=${src} alt="image">
                 <div class="body">
@@ -17,17 +18,16 @@ function createEventComponent({src, title, deadline}) {
                     <p><strong>Deadline:</strong> ${deadline}</p>
                     <button class="bdetails">See details</button>
                 </div>
-        </section>`
-    const doc = domparser.parseFromString(html, 'text/html')
-    const styles = document.createElement('style')
-    styles.innerHTML = createStyles()
-    doc.body.appendChild(styles);
-    return doc.body.innerHTML
+        </section>
+        `
+    }
+
 }
 
-function createStyles() {
+function getStyles() {
     return `
-        .card {
+    <style>
+         .card {
             flex: 0 1 20%;
             height: 600px;
             margin: 1em 4% 0;
@@ -56,5 +56,6 @@ function createStyles() {
         
             align-self: flex-end;
         }
+    </style>
     `
 }
