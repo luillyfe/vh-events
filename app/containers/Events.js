@@ -1,14 +1,15 @@
-import {HTMLContext, getEvents} from "../store/HTMLContext.js";
-import {request} from "../request/index.js";
+import {HTMLContext, getEvents, requestEvents} from "../store/HTMLContext.js";
 
 export class Events extends HTMLContext {
     constructor() {
         super();
         this.attachShadow({mode: 'open'})
 
-        request.get('events').then(events => {
-            getEvents(events)
-        })
+        if (!this.store.getState().events.all.length) {
+            requestEvents()
+        } else {
+            getEvents()
+        }
 
         this.store.subscribe(({events}) => {
             this.shadowRoot.innerHTML = `
@@ -19,7 +20,7 @@ export class Events extends HTMLContext {
 
         this.shadowRoot.innerHTML = `
             ${getStyles()}
-            <main class="events"></main>    
+            <main class="events"></main>
             `
     }
 }
@@ -47,10 +48,10 @@ function getStyles() {
     return `
     <style>
          .events {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-evenly;
-}
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: space-evenly;
+        }
     </style>
     `
 }

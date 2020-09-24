@@ -38,8 +38,10 @@ export class Event extends HTMLElement {
                         </div>
                     </div>
                     <div class="footer">
-                    ${(coming == "true") ? '<button>You are coming to this event</button>'
-                : '<button class="apply">Apply</button>'}
+                    ${(coming == "true") ? 
+                        '<button>You are coming to this event</button>'
+                        : '<button class="apply">Apply</button>'}
+                        <button class="back">Go Back</button>
                     </div>
                 </section>
                 `
@@ -80,6 +82,17 @@ export class Event extends HTMLElement {
                 const detail = {eventId: this.attributes.eventId.value}
                 this.dispatchEvent(new CustomEvent('event-details', {
                     detail,
+                    bubbles: true,
+                    composed: true
+                }))
+            })
+        }
+
+        const gobackButton = this.shadowRoot.querySelector('.back')
+        if (gobackButton) {
+            gobackButton.addEventListener('click', ev => {
+                ev.stopPropagation()
+                this.dispatchEvent(new CustomEvent('home', {
                     bubbles: true,
                     composed: true
                 }))

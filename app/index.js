@@ -11,19 +11,14 @@ function app() {
         <vh-navbar></vh-navbar>
         <vh-events></vh-events>
     `
-
-    app.addEventListener('new-event', ev => {
-        ev.stopPropagation()
-        ev.preventDefault()
+    app.addEventListener('home', ev => {
         app.innerHTML = `
         <vh-navbar></vh-navbar>
-        <vh-new-event></vh-new-event>
-        `
+        <vh-events></vh-events>
+    `
     })
 
     app.addEventListener('event-details', ev => {
-        ev.stopPropagation()
-        ev.preventDefault()
         const {eventId} = ev.detail
         app.innerHTML = `
          <vh-navbar></vh-navbar>

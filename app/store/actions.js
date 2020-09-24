@@ -1,4 +1,5 @@
-export const NEW_EVENT = 'NEW_EVENT';
+import {request} from "../request/index.js";
+
 export const GET_EVENT = 'GET_EVENT';
 export const GET_EVENTS = 'GET_EVENTS';
 export const ADD_ATTENDEE_EVENT = 'ADD_ATTENDEE_EVENT';
@@ -20,9 +21,22 @@ export const getEventAction = store => (eventId) => {
         payload: {eventId}
     })
 }
-export const getEventsAction = store => (events) =>  {
-    store.dispatch({
-        type: GET_EVENTS,
-        payload: {events}
+
+export const getEventsAction = store => () => {
+    const events = store.getState().events.all
+    request.get('events').then(() => {
+        store.dispatch({
+            type: GET_EVENTS,
+            payload: {events}
+        })
+    })
+}
+
+export const requestEventsAction = store => () => {
+    request.get('events').then(events => {
+        store.dispatch({
+            type: GET_EVENTS,
+            payload: {events}
+        })
     })
 }

@@ -1,6 +1,6 @@
 import {combineReducers, Store} from "./index.js";
 import {eventsReducer as events} from "./reducers.js";
-import {applyToEventAction, getEventAction, getEventsAction} from "./actions.js";
+import {applyToEventAction, getEventAction, getEventsAction, requestEventsAction} from "./actions.js";
 
 const appReducer = combineReducers({events})
 const store = new Store(appReducer)
@@ -17,3 +17,4 @@ export class HTMLContext extends HTMLElement {
 export const applyToEvent = applyToEventAction(store)
 export const getEvent = getEventAction(store)
 export const getEvents = getEventsAction(store)
+export const requestEvents = requestEventsAction(store)

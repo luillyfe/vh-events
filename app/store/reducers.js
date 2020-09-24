@@ -2,10 +2,6 @@ import {ADD_ATTENDEE_EVENT, GET_EVENTS, GET_EVENT} from "./actions.js";
 
 function eventsReducer(state = getInitialState(), {type, payload}) {
     switch (type) {
-        /*case NEW_EVENT: {
-            const {event} = payload;
-            return {...state, all: [...state.all, event]};
-        }*/
         case ADD_ATTENDEE_EVENT: {
             const {eventId, attendee} = payload;
             const events = state.all.map(event => {
