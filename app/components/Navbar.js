@@ -10,20 +10,10 @@ export class Navbar extends HTMLElement {
                     <span class="hamburger-inner"></span>
                   </span>
                 </button>
-                <div class="navbar collapse">
-                    <ul><li><button id="newEvent">New event</button></li></ul>
-                </div>
             </nav>
         `
 
         const button = this.shadowRoot.querySelector('#newEvent');
-        const events = document.querySelector('vh-events')
-
-        button.addEventListener('click', ev => {
-            this.dispatchEvent(new CustomEvent('new-event', {
-                bubbles: true
-            }))
-        })
     }
 
 }
@@ -36,6 +26,7 @@ function getStyles() {
     }
     .hamburger {
         padding: 15px 15px;
+        padding-bottom: 0;
         display: inline-block;
         cursor: pointer;
         font: inherit;

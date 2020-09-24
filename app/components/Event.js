@@ -27,6 +27,7 @@ export class Event extends HTMLElement {
                 ${getStyles()}
                 <section class="card">
                     <img src=${src} alt="image">
+                    <vh-share-button></vh-share-button>
                     <div class="body">
                         <h5 class="cardHead">${title}</h5>
                         <p>${body}</p>
@@ -107,7 +108,6 @@ function getStyles() {
     <style>
          .card {
             flex: 0 1 20%;
-            /*height: 600px;*/
             margin: 1em 4% 0;
             background-color: #6a142e;
             color: #c3a1ab;
@@ -128,7 +128,7 @@ function getStyles() {
             font-size: 1.5em;
             text-align: center;
             margin-bottom: 0;
-            margin-top: 1em;
+            margin-top: 0.5em;
         }
         .details {
             display: flex;
