@@ -25,6 +25,7 @@ export class Event extends HTMLElement {
         if (body) {
             this.shadowRoot.innerHTML = `
                 ${getStyles()}
+                <vh-notification id="notification"></vh-notification>
                 <section class="card">
                     <img src=${src} alt="image">
                     <vh-share-button></vh-share-button>
@@ -39,9 +40,9 @@ export class Event extends HTMLElement {
                         </div>
                     </div>
                     <div class="footer">
-                    ${(coming == "true") ? 
-                        '<button>You are coming to this event</button>'
-                        : '<button class="apply">Apply</button>'}
+                    ${(coming == "true") ?
+                '<button>You are coming to this event</button>'
+                : '<button class="apply">Apply</button>'}
                         <button class="back">Go Back</button>
                     </div>
                 </section>
@@ -68,11 +69,16 @@ export class Event extends HTMLElement {
         if (applyButton) {
             applyButton.addEventListener('click', ev => {
                 ev.stopPropagation()
-                const detail = {eventId: this.attributes.eventId.value, attendee: "Fermin Blanco"}
-                this.dispatchEvent(new CustomEvent('apply-event', {
-                    detail,
-                    bubbles: true
-                }))
+
+                if (this.attributes.type.value !== 'Premium-only Webinar') {
+                    const detail = {eventId: this.attributes.eventId.value, attendee: "Fermin Blanco"}
+                    this.dispatchEvent(new CustomEvent('apply-event', {
+                        detail,
+                        bubbles: true
+                    }))
+                } else {
+                    this.shadowRoot.getElementById('notification').classList.add('target')
+                }
             })
         }
 
