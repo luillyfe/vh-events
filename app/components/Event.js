@@ -4,39 +4,62 @@ export class Event extends HTMLElement {
         this.attachShadow({mode: 'open'})
         let numberOfAttendes = 0
 
+        /**
+         * TODO: Better managing of null/undefined values
+         * **/
         const src = this.attributes.src ? this.attributes.src.value : "/public/images/300x150.png"
         const title = this.attributes.title.value
         const deadline = this.attributes.deadline.value
 
-        const body = this.attributes.body.value
+        const body = this.attributes.body ? this.attributes.body.value : false
         const coming = this.attributes.coming.value
-        const attendees = this.attributes.attendees.value
+        const attendees = this.attributes.attendees ? this.attributes.attendees.value : false
 
         if (attendees) {
             numberOfAttendes = attendees.split(",").length;
         }
 
-        this.shadowRoot.innerHTML = `
-        ${getStyles()}
-        <section class="card">
-            <img src=${src} alt="image">
-            <div class="body">
-                <h5 class="cardHead">${title}</h5>
-                <p>${body}</p>
-                <p>${deadline}</p>
-                <p><span>😱</span>Online</p>
-                <p><strong>Deadline:</strong> ${deadline}</p>
-                <div class="details">
-                    <h3>Attendees: ${numberOfAttendes}</h3>
-                    <button>See details</button>
-                </div>
-            </div>
-            <div class="footer">
-            ${(coming == "true") ? '<button>You are coming to this event</button>'
-            : '<button class="apply">Apply</button>'}
-            </div>
-        </section>
-        `
+        /**
+         * TODO: Fallback for images
+         * **/
+        if (body) {
+            this.shadowRoot.innerHTML = `
+                ${getStyles()}
+                <section class="card">
+                    <img src=${src} alt="image">
+                    <div class="body">
+                        <h5 class="cardHead">${title}</h5>
+                        <p>${body}</p>
+                        <p>${deadline}</p>
+                        <p><span>😱</span>Online</p>
+                        <p><strong>Deadline:</strong> ${deadline}</p>
+                        <div class="details">
+                            <h3>Attendees: ${numberOfAttendes}</h3>
+                        </div>
+                    </div>
+                    <div class="footer">
+                    ${(coming == "true") ? '<button>You are coming to this event</button>'
+                : '<button class="apply">Apply</button>'}
+                    </div>
+                </section>
+                `
+        } else {
+            this.shadowRoot.innerHTML = `
+                ${getStyles()}
+                <section class="card">
+                <img src=${src} alt="image">
+                    <div class="body">
+                        <h5 class="cardHead">${title}</h5>
+                        <p>${deadline}</p>
+                        <p><span>😱</span>Online</p>
+                        <p><strong>Deadline:</strong> ${deadline}</p>
+                        <div class="details">
+                            <button>See details</button>
+                        </div>
+                    </div>
+                </section>
+                `
+        }
 
         const applyButton = this.shadowRoot.querySelector('button.apply')
         if (applyButton) {
@@ -46,6 +69,19 @@ export class Event extends HTMLElement {
                 this.dispatchEvent(new CustomEvent('apply-event', {
                     detail,
                     bubbles: true
+                }))
+            })
+        }
+
+        const detailsButton = this.shadowRoot.querySelector('.details > button')
+        if (detailsButton) {
+            detailsButton.addEventListener('click', ev => {
+                ev.stopPropagation()
+                const detail = {eventId: this.attributes.eventId.value}
+                this.dispatchEvent(new CustomEvent('event-details', {
+                    detail,
+                    bubbles: true,
+                    composed: true
                 }))
             })
         }

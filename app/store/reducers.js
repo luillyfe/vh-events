@@ -1,4 +1,4 @@
-import {ADD_ATTENDEE_EVENT, GET_EVENTS} from "./actions.js";
+import {ADD_ATTENDEE_EVENT, GET_EVENTS, GET_EVENT} from "./actions.js";
 
 function eventsReducer(state = getInitialState(), {type, payload}) {
     switch (type) {
@@ -17,6 +17,11 @@ function eventsReducer(state = getInitialState(), {type, payload}) {
                 }
             })
             return {...state, all: events};
+        }
+        case GET_EVENT: {
+            const {eventId} = payload;
+            const event = state.all.filter(({id}) => id === Number(eventId))[0]
+            return {...state, all: state.all, currentEvent: event};
         }
         case GET_EVENTS: {
             const {events} = payload;
