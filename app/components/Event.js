@@ -115,8 +115,8 @@ function getStyles() {
          .card {
             flex: 0 1 20%;
             margin: 1em 4% 0;
-            background-color: #6a142e;
-            color: #c3a1ab;
+            background-color: #1355aa;
+            color: #a0bbdd;
         
             display: flex;
             flex-direction: column;
@@ -151,6 +151,16 @@ function getStyles() {
         }
         .footer > button {
             flex: 0 1 100%;
+        }
+        @media only screen and (min-width: 480px)  {
+            .card {
+                width: 17em;
+            }
+        }
+        @media only screen and (min-width: 768px)  {
+            .card {
+                height: 28em;
+            }
         }
     </style>
     `

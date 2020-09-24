@@ -52,25 +52,26 @@ function getStyles() {
     
     .popup h2 {
       margin-top: 0;
-      color: #333;
+      color: #1355aa;
       font-family: Tahoma, Arial, sans-serif;
     }
     .popup .close {
       position: absolute;
-      top: 20px;
+      top: 10px;
       right: 30px;
       transition: all 200ms;
       font-size: 30px;
       font-weight: bold;
       text-decoration: none;
-      color: #333;
+      color: #1355aa;
     }
     .popup .close:hover {
-      color: #06D85F;
+      color: #a0bbdd;
     }
     .popup .content {
       max-height: 30%;
       overflow: auto;
+      color: #1355aa;
     }
     </style>
     `

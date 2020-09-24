@@ -54,10 +54,12 @@ function getHtml(eventData) {
 function getStyles() {
     return `
     <style>
-         .events {
-            display: flex;
-            flex-flow: row wrap;
-            justify-content: space-evenly;
+        @media only screen and (min-width: 480px)  {
+            :host {
+                display: flex;
+                flex-flow: column wrap;
+                align-items: center;
+            }
         }
     </style>
     `

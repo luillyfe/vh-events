@@ -47,10 +47,19 @@ function getHtml(events) {
 function getStyles() {
     return `
     <style>
-         .events {
-            display: flex;
-            flex-flow: row wrap;
-            justify-content: space-evenly;
+        @media only screen and (min-width: 480px)  {
+            :host {
+                display: flex;
+                flex-flow: column wrap;
+                align-items: center;
+            }
+        }
+        @media only screen and (min-width: 768px)  {
+            :host {
+                display: flex;
+                flex-flow: row wrap;
+                justify-content: space-evenly;
+            }
         }
     </style>
     `
