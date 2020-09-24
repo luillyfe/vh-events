@@ -1,22 +1,65 @@
 [
   {
     "src": "https://via.placeholder.com/300x150",
-    "title": "Premium Open House Experience",
-    "deadline": "September 24, 2020"
+    "id": 1,
+    "title": "Angular: managing the state",
+    "body": "Come and join us in this new meeting we will be taking about ngrx and more.",
+    "deadline": "September 24, 2020",
+    "type": "MeetUp",
+    "attendees": [
+      "Fermin Blanco"
+    ]
   },
   {
     "src": "https://via.placeholder.com/300x150",
+    "id": 2,
     "title": "No string attached",
-    "deadline": "September 25, 2020"
+    "body": "Lorem ipsum for Leap events.",
+    "deadline": "September 25, 2020",
+    "type": "Leap",
+    "attendees": [
+      "Fermin Blanco"
+    ]
   },
   {
     "src": "https://via.placeholder.com/300x150",
-    "title": "Just another vanhack event",
-    "deadline": "September 26, 2020"
+    "id": 3,
+    "title": "Technical Leader Open call",
+    "body": "Lorem ipsum for Recruiting Mission events",
+    "deadline": "September 26, 2020",
+    "type": "Recruiting Mission",
+    "attendees": [
+      "Fermin Blanco",
+      "Ruth Vill"
+    ]
   },
   {
     "src": "https://via.placeholder.com/300x150",
+    "id": 4,
+    "title": "Rxjs hackathon",
+    "body": "Do you think your Observables skills are sharpen enough?",
+    "deadline": "September 27, 2020",
+    "type": "VanHackathon",
+    "attendees": [
+      "Fermin Blanco"
+    ]
+  },
+  {
+    "src": "https://via.placeholder.com/300x150",
+    "id": 5,
+    "title": "Vanhack tips",
+    "body": "Lorem ipsum for Premium-only webinars",
+    "deadline": "September 27, 2020",
+    "type": "Premium-only Webinar",
+    "attendees": []
+  },
+  {
+    "src": "https://via.placeholder.com/300x150",
+    "id": 6,
     "title": "Come here",
-    "deadline": "September 27, 2020"
+    "body": "Lorem ipsum for Open Webinar",
+    "deadline": "September 27, 2020",
+    "type": "Open Webinar",
+    "attendees": []
   }
 ]
