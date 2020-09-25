@@ -1,20 +1,19 @@
+import {format, escaping} from "../utils/index.js";
+
 export class Event extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({mode: 'open'})
         let numberOfAttendes = 0
 
-        /**
-         * TODO: Better managing of null/undefined values
-         * **/
-        const src = this.attributes.src ? this.attributes.src.value : "/public/images/300x150.png"
-        const title = this.attributes.title.value
-        const deadline = this.attributes.deadline.value
-        const type = this.attributes.type ? this.attributes.type.value : false
-
-        const body = this.attributes.body ? this.attributes.body.value : false
-        const coming = this.attributes.coming.value
-        const attendees = this.attributes.attendees ? this.attributes.attendees.value : false
+        const {
+            src = "/public/images/300x150.png",
+            title,
+            deadline,
+            type,
+            body,
+            coming,
+            attendees} = escaping(format(this.attributes))
 
         if (attendees) {
             numberOfAttendes = attendees.split(",").length;
