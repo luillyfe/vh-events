@@ -29,10 +29,11 @@ function getHtml(events) {
     const wrapper = document.createElement('main');
     wrapper.setAttribute('class', 'events');
 
-    for (let {src, title, deadline, id, coming} of events) {
+    for (let {src, title, type, deadline, id, coming} of events) {
         const event = `<vh-event
                             src="${src}"
                             title="${title}"
+                            type="${type}"
                             deadline="${deadline}"
                             coming="${!!coming}"
                             eventId="${id}"></vh-event>    

@@ -10,6 +10,7 @@ export class Event extends HTMLElement {
         const src = this.attributes.src ? this.attributes.src.value : "/public/images/300x150.png"
         const title = this.attributes.title.value
         const deadline = this.attributes.deadline.value
+        const type = this.attributes.type ? this.attributes.type.value : false
 
         const body = this.attributes.body ? this.attributes.body.value : false
         const coming = this.attributes.coming.value
@@ -26,7 +27,7 @@ export class Event extends HTMLElement {
             this.shadowRoot.innerHTML = `
                 ${getStyles()}
                 <vh-notification id="notification"></vh-notification>
-                <section class="card">
+                <section class="card ${ type === 'Premium-only Webinar' ? 'premium' : ''}">
                     <img src=${src} alt="image">
                     <vh-share-button></vh-share-button>
                     <div class="body">
@@ -50,7 +51,7 @@ export class Event extends HTMLElement {
         } else {
             this.shadowRoot.innerHTML = `
                 ${getStyles()}
-                <section class="card">
+                <section class="card ${ type === 'Premium-only Webinar' ? 'premium' : ''}">
                 <img src=${src} alt="image">
                     <div class="body">
                         <h5 class="cardHead">${title}</h5>
@@ -121,6 +122,9 @@ function getStyles() {
             display: flex;
             flex-direction: column;
         }
+        .premium {
+            border: #1355aa 0.375em solid;
+        }
         .body {
             display: flex;
             flex-direction: column;
@@ -141,9 +145,13 @@ function getStyles() {
             font-size: 0.8em;
             padding: 1em;
             justify-content: space-evenly;
+            margin-top: auto;
         }
         .details > h3, .details > button {
-            flex: 0 1 50%;
+            flex: 1 1 50%;
+        }
+        .details > button {
+            padding: 1em;
         }
         .footer {
             display: flex;
