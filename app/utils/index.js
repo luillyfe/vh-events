@@ -5,9 +5,9 @@ export function escaping(data) {
     }, data)
 }
 
-export function format(attr) {
-    return Object.getOwnPropertyNames(attr).reduce((obj, prop) => {
-        obj[attr[prop].name] = attr[prop].value
+export function format(attrs) {
+    return Object.getOwnPropertyNames(attrs).reduce((obj, prop) => {
+        obj[attrs[prop].name] = attrs[prop].value
         return obj
     }, {})
 }
