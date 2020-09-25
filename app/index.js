@@ -1,28 +1,23 @@
+import {Router} from "./router/Router.js"
+
 app()
 
 function app() {
-    const app = document.getElementById('app')
+    const router = new Router();
 
-    /**
-     * TODO: Build a router module
-     * **/
-
-    app.innerHTML = `
+    router.default(`
         <vh-navbar></vh-navbar>
         <vh-events></vh-events>
-    `
-    app.addEventListener('home', ev => {
-        app.innerHTML = `
+    `)
+
+    router.route('home', () => `
         <vh-navbar></vh-navbar>
         <vh-events></vh-events>
-    `
-    })
+    `)
 
-    app.addEventListener('event-details', ev => {
-        const {eventId} = ev.detail
-        app.innerHTML = `
+    // '/event/:id'
+    router.route('event-details', ({eventId}) => `
          <vh-navbar></vh-navbar>
          <vh-event-details eventId="${eventId}"></vh-event-details>
-         `
-    })
+     `)
 }
